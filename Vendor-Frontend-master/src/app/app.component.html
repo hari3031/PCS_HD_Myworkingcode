@@ -1,0 +1,35 @@
+ <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+        <a class="navbar-brand" routerLink="/">Vendor Portal</a>
+        <ul class="nav navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/grid" routerLinkActive="active">All Vendor Details<span class="sr-only">(current)</span></a>
+          </li>
+       </ul>
+          <ul class="nav navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/employergrid" routerLinkActive="active">All Employers Details<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+         
+          <ul class="nav navbar-nav navbar-right" *ngIf = "!signUpVisibilityFlag">
+            <li>
+              <li class="dropdown" dropdown> 
+                
+                  <a dropdownToggle routerLinkActive="active" role="button" > 
+                    {{patientInfo?.firstname}} <span class="caret"></span></a>
+                  <ul *dropdownMenu class="dropdown-menu"> 
+                    <li><a routerLink="/" style="color: black;" routerLinkActive="active" (click)="logout()">Logout</a></li>
+                    <li><a routerLink="/profile" style="color: black;" routerLinkActive="active">Edit your Profile</a></li>
+                    <li><a  style="color: black;" routerLinkActive="active" (click)="onEmployerClick()">Employer Info</a></li>
+                  </ul>
+                </li>
+                  </ul>
+            <div class="pull-right" *ngIf = "signUpVisibilityFlag" >
+            <button type="button" routerLink="/login" routerLinkActive="active" class="btn" style="color: black"> <strong>Sign In</strong></button> 
+          </div>
+          <div>
+            {{this.firstName}}
+            </div>
+          </nav>
+          <flash-messages></flash-messages>
+           <router-outlet></router-outlet>  

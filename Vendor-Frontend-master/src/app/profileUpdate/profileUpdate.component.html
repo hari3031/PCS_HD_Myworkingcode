@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+     <div class="col-sm-6 col-md-4 col-md-offset-4">
+      <h1 class="text-center login-title"><font color="Black">Account Information</font></h1>
+        <div class="account-wall">
+            <form  class="form-signin" #k="ngForm" (ngSubmit)="onSubmit(k)" >
+
+						  <label> First Name</label>
+              <input [ngModel]="firstname"  class="form-control" name=firstname #fname="ngModel">
+               <label>Last Name</label>
+						 	<input [ngModel]="lastname"  class="form-control" name=lastname  #flname="ngModel">
+               <label>Email</label>
+							<input [ngModel]="email"  class="form-control" name=email  #fename="ngModel">
+               <label>Phone Number</label>
+							<input [ngModel]="phonenumber"  class="form-control" name=phonenumber #fpname="ngModel">
+               <label>Date Of Birth</label>
+							<input [ngModel]="dob"  class="form-control" name=dob  #fdname="ngModel">
+               <label>University Name </label>
+							<input [ngModel]="universityname"  class="form-control" name=universityname  #funame="ngModel">
+               <label>Major</label>
+							<input [ngModel]="major"  class="form-control" name=major  #fmname="ngModel">
+              <label>City  Name</label>
+							<input [ngModel]="cityname"  class="form-control" name=cityname  #fcname="ngModel">
+            <!--   <label>Role</label>
+							<input [ngModel]="role"  class="form-control" name=role  #frname="ngModel">-->
+							<br>
+							<p align = "center">
+								<button class="btn btn-lg btn-info">Save Changes<span class="glyphicon glyphicon-saved"></span></button>
+							</p>
+						</form>
+
+					</div>
+    </div>
+    </div>
+
+</div>

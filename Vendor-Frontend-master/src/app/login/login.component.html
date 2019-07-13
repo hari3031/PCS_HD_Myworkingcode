@@ -1,0 +1,268 @@
+
+     
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <h1 class="text-center login-title"><font color="white">Sign in to Vendor Portal</font></h1>
+            <div class="account-wall">
+                <img class="profile-img" src="https://compass-ssl.microsoft.com/assets/7c/f5/7cf5c795-b490-4bed-9289-f6826c9dd76b.svg?n=account-icon-gray.svg"
+                    alt="">
+                <form  class="form-signin" #g="ngForm" (ngSubmit)="onSubmit(g)" novalidate>
+               <div *ngIf="error" class="alert alert-danger">
+                    {{error}}
+            </div>                        
+                <input type="text" class="form-control" placeholder="Username" name="username" ngModel required  pattern="[a-zA-Z][a-zA-Z ]+" #uname="ngModel">
+                <div *ngIf="uname.invalid && (uname.dirty || uname.touched)" class="alert alert-danger">
+                    <div *ngIf="uname.errors.required"> 
+                       User Name is required.
+                    </div>
+                    <div *ngIf="uname.errors.pattern">
+                        Only alphabets allowed.
+                    </div>         
+                </div>
+                <input type="password" class="form-control" placeholder="Password" name="password" ngModel required  #pname="ngModel">
+                <div *ngIf="pname.invalid && (pname.dirty || pname.touched)" class="alert alert-danger">
+                    <div *ngIf="pname.errors.required">
+                        Password is required.
+                    </div>                
+                </div>
+               
+                <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!g.form.valid">
+                    Sign in</button>
+                <br />                   
+                <div>
+                        <button class="btn btn-lg btn-info btn-block" (click)="loginGoogle()" id="google">Login With Google</button>
+                </div>
+                <label class="checkbox pull-left">
+                    <input type="checkbox" value="remember-me">
+                    Remember me
+                </label>
+                <a href="#" data-toggle="modal" data-target="#forgot" class="pull-right need-help">Forgot password </a><span class="clearfix"></span>
+                </form>
+            </div>
+            <a href="#" data-toggle="modal" data-target="#addModal" class="text-center new-account"><font color="white">Create an account </font></a>
+        </div>
+    </div>
+</div>
+    
+
+<div id="addModal" class="modal fade" role="dialog" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header" id="headsignup">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <font color="black"><h1 class="text-center">Sign Up</h1></font>
+              </div>
+              <div class="modal-body">   
+         <form class="form col-md-12 " #f="ngForm" (ngSubmit)="onPost(f)" novalidate>
+                 <div class="form-group">  <input type="text" class="form-control input-lg" placeholder="Username" name="username" ngModel required minlength="4"
+                     pattern="[a-zA-Z][a-zA-Z ]+" maxlength="10" #sname="ngModel" (focusout)="focusOutFunction($event)" />   </div>
+                 
+                 <div *ngIf="sname.invalid && (sname.dirty || sname.touched)" class="alert alert-danger">
+                    
+                    <div *ngIf="sname.errors.required">
+                             User Name is required.
+                    </div>
+                    <div *ngIf="sname.errors.minlength">
+                             User Name must be at least 4 characters long.
+                    </div>
+                    <div *ngIf="!sname.errors.maxlength">
+                            User Name maximum 10 characters long.
+                    </div>
+                    <div *ngIf="sname.errors.pattern">
+                             Only alphabets allowed.
+                    </div>
+                    
+                                    
+                  </div>  
+                  <div *ngIf="uflag"  class="alert alert-danger">
+                    User Name already exists. Please choose another name
+                </div> 
+                                 
+
+                 <div class="form-group">  <input type="password" class="form-control input-lg" placeholder="Password" name="password" ngModel required minlength="3" maxlength="8"  #spname="ngModel"  /> </div>
+                 
+                 <div *ngIf="spname.invalid && (spname.dirty || spname.touched)" class="alert alert-danger">
+                    
+                 <div *ngIf="spname.errors.required">
+                        Password is required.
+                 </div>
+                <div *ngIf="spname.errors.minlength">
+                        Password must be at least 3 characters long.
+                </div>
+                <div *ngIf="!spname.errors.maxlength">
+                    Passoword maximum 8 characters long.
+                </div>
+                <div *ngIf="spname.errors.pattern">
+                        Please enter alphanumberic letters.
+                </div>
+                                    
+                </div>
+                 
+                 <div class="form-group"><input type="text" class="form-control input-lg" placeholder="Firstname" name="firstname" ngModel required minlength="6" maxlength="15" pattern="[a-zA-Z][a-zA-Z ]+" #fname="ngModel"  /></div> 
+                 
+                 <div *ngIf="fname.invalid && (fname.dirty || fname.touched)" class="alert alert-danger">
+                    
+                    <div *ngIf="fname.errors.required">
+                             First Name is required.
+                    </div>
+                    <div *ngIf="fname.errors.minlength">
+                             First Name must be at least 6 characters long.
+                    </div>
+                    <div *ngIf="!fname.errors.maxlength">
+                            First Name maximum 15 characters long.
+                    </div>
+                    <div *ngIf="fname.errors.pattern">
+                             Only alphabets allowed.
+                    </div>
+                                    
+                  </div>    
+                 
+                 <div class="form-group">  <input type="text" class="form-control input-lg" placeholder="Lastname" name="lastname" ngModel required  minlength="6" maxlength="15" pattern="[a-zA-Z][a-zA-Z ]+" #lname="ngModel"  /> </div>
+                 <div *ngIf="lname.invalid && (lname.dirty || lname.touched)" class="alert alert-danger">
+                    
+                    <div *ngIf="lname.errors.required">
+                             Last Name is required.
+                    </div>
+                    <div *ngIf="lname.errors.minlength">
+                             Last Name must be at least 6 characters long.
+                    </div>
+                    <div *ngIf="!lname.errors.maxlength">
+                            Last Name maximum 15 characters long.
+                    </div>
+                    <div *ngIf="lname.errors.pattern">
+                             Only alphabets allowed.
+                    </div>
+                                    
+                  </div>    
+                 
+                 <div class="form-group"> <input type="email" class="form-control input-lg" placeholder="Email" 
+                    name="email" ngModel required 
+                    pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"  #semail="ngModel" (focusout)="focusOutFunction($event)"  /> </div>
+                 
+                 <div *ngIf="semail.invalid && (semail.dirty || semail.touched)" class="alert alert-danger">
+                    
+                 <div *ngIf="semail.errors.required">
+                        Email id is required.
+                 </div>
+                
+                <div *ngIf="semail.errors.pattern">
+                    Email format should be <small><b>joe@abc.com</b></small>
+                </div>
+                                    
+                </div>
+                <div *ngIf="eflag"  class="alert alert-danger">
+                    Email id already exists. Please choose another id
+                </div> 
+                 
+                 <div class="form-group"><input type="text" class="form-control input-lg" placeholder="Phonenumber" name="phonenumber" ngModel required pattern="[0-9]*" minlength="10" maxlength="10" #sphone="ngModel" /> </div>
+                 <div *ngIf="sphone.invalid && (sphone.dirty || sphone.touched)" class="alert alert-danger">
+                    
+                    <div *ngIf="sphone.errors.required">
+                            Phone number is required.
+                    </div>
+                    <div *ngIf="sphone.errors.minlength">
+                            Phone number must be at least 10 characters long.
+                    </div>
+                    <div *ngIf="!sphone.errors.maxlength">
+                            Phone number maximum 10 characters long.
+                    </div>
+                    <div *ngIf="sphone.errors.pattern">
+                             Only digits allowed.
+                    </div>
+                                    
+                  </div>    
+
+                 <div class="form-group"><label for="exampleSelect1">Role: </label>
+    <select class="form-control input-lg"  name="role" ngModel required #role="ngModel" >
+      <option value="admin">Admin</option>
+      <option value="recruiter">Recruiter</option>
+      <option value="consultant">Consultant</option>
+
+    </select>
+  </div>
+  <div *ngIf="role.invalid && (role.dirty || role.touched)" class="alert alert-danger">
+    
+    <div *ngIf="role.errors.required">
+            role is required.
+    </div>
+  </div>
+  <div class="form-group">  <input type="text" class="form-control input-lg" placeholder="University Name" name="universityname" ngModel required  minlength="6" maxlength="15" pattern="[a-zA-Z][a-zA-Z ]+" #lname="ngModel"  /> </div>
+  <div class="form-group">  <input type="text" class="form-control input-lg" placeholder="City Name" name="cityname" ngModel required  minlength="6" maxlength="15" pattern="[a-zA-Z][a-zA-Z ]+" #lname="ngModel" /> </div>
+  <div class="form-group">  <input type="text" class="form-control input-lg" placeholder="Major" name="major" ngModel required  minlength="6" maxlength="15" pattern="[a-zA-Z][a-zA-Z ]+" #lname="ngModel"  /> </div>
+  <div class="form-group">  <input type="text" class="form-control input-lg" placeholder="Date oF Birth" name="dob" ngModel required  minlength="6" maxlength="15" #lname="ngModel"  /> </div>
+   
+  <span id="fileselector">
+        <label class="btn btn-default" for="upload-file-selector">
+            <input id="upload-file-selector" type="text" name="upload" ngModel required #upload="ngModel">
+            <i class="fa_icon icon-upload-alt margin-correction"></i>upload file
+        </label>
+    </span>
+                     <button  class="btn btn-primary btn-lg  btn-block" type="submit"  [disabled]="!f.form.valid">Sign Up</button>
+         </form>
+              </div>
+              <div class="modal-footer">
+                <div class="col-md-12">
+                 <div >
+                   
+                    <span  class="pull-right"></span>
+                  </div>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<div class="modal fade" id="forgot">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header" id="head">
+               <button type="button" class="close" data-dismiss='modal' aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+               <h4 class="modal-title" style="font-size: 32px; padding: 12px;"> Recover Your Password </h4>
+            </div>
+
+            <div class="modal-body">
+               <div class="container-fluid">
+                  <div class="row">
+                     <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                           <div class="input-group">
+                              <div class="input-group-addon">
+                                 <span class="glyphicon glyphicon-envelope"></span>
+                              </div>
+                              <input type="email" class="form-control" placeholder="Enter Your E-Mail ID" name="email">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="row">
+                     <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                           <div class="input-group">
+                              <div class="input-group-addon">
+                                 <span class="glyphicon glyphicon-lock"></span>
+                              </div>
+                              <input type="password" class="form-control" placeholder="Enter Your New Password" name="newpwd">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="modal-footer">
+               <div class="form-group">
+                  <button type="submit" class="btn btn-lg btn-info"> Save <span class="glyphicon glyphicon-saved"></span></button>
+
+                  <button type="button" data-dismiss="modal" class="btn btn-lg btn-default"> Cancel <span class="glyphicon glyphicon-remove"></span></button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+      
+
+
+
+

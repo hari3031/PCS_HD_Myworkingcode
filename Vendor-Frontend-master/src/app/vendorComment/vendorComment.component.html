@@ -1,0 +1,51 @@
+
+
+
+<div class="container" >
+    <div class="row">
+    <div class="col-sm-12">    
+    <strong><h2>Comments on vendor {{vendor_name}}</h2></strong>  
+    </div><!-- /col-sm-12 -->
+    </div><!-- /row -->
+    <div class="row" *ngFor="let comment of comments">
+    <div class="col-sm-1">
+    <div class="thumbnail">
+    <img class="img-responsive user-photo" src="" alt="{{comment.commented_by}}">
+    </div><!-- /thumbnail -->
+    </div><!-- /col-sm-1 -->
+    
+    <div class="col-sm-5">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+    <strong>{{comment.commented_by}}</strong> <span class="text-muted">commented on {{comment.comment_date}} </span>
+    </div>
+    <div class="panel-body">
+    {{comment.vendor_comments}}
+    </div><!-- /panel-body -->
+    </div><!-- /panel panel-default -->
+    </div><!-- /col-sm-5 -->
+   
+    </div><!-- /row -->
+    
+    </div><!-- /container -->
+
+    <div class="container">
+      
+
+          <div class="row">
+          
+          <div class="col-md-6">
+                      <div class="widget-area no-padding blank">
+                      <div class="status-upload">
+                        <form>
+                          <textarea placeholder="Write a Comment..." ></textarea>
+                          <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Share</button>
+                        </form>
+                      </div><!-- Status Upload  -->
+                    </div><!-- Widget Area -->
+                  </div>
+              
+          </div>
+      </div>
+
+

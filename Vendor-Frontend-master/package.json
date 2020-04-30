@@ -32,7 +32,7 @@
     "firebase": "^3.6.5",
     "jasmine-core": "2.6.4",
     "jasmine-spec-reporter": "3.3.0",
-    "jquery": "3.1.1",
+    "jquery": "3.5.0",
     "karma": "1.7.0",
     "karma-chrome-launcher": "2.1.1",
     "ng2-bootstrap-modal": "^1.0.1",
